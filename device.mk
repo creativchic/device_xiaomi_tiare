@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/xiaomi/riva
+DEVICE_PATH := device/xiaomi/tiare
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += \
@@ -375,4 +375,4 @@ PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/wifi/firmware/WCNSS_qcom_cfg.ini:$(TARGET_COPY_OUT_VENDOR)/etc/wifi/WCNSS_qcom_cfg.ini
 
 # Inherit proprietary files
-$(call inherit-product-if-exists, vendor/xiaomi/riva/riva-vendor.mk)
+$(call inherit-product-if-exists, vendor/xiaomi/tiare/tiare-vendor.mk)

@@ -18,7 +18,7 @@
 
 set -e
 
-DEVICE=riva
+DEVICE=tiare
 VENDOR=xiaomi
 
 # Load extract_utils and do some sanity checks

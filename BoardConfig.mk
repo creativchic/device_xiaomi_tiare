@@ -15,7 +15,7 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/xiaomi/riva
+DEVICE_PATH := device/xiaomi/tiare
 
 # Bootloader
 TARGET_BOOTLOADER_BOARD_NAME := MSM8937
@@ -25,19 +25,11 @@ TARGET_NO_BOOTLOADER := true
 TARGET_BOARD_PLATFORM := msm8937
 
 # Architecture
-TARGET_ARCH := arm64
-TARGET_ARCH_VARIANT := armv8-a
-TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_ABI2 :=
-TARGET_CPU_VARIANT := generic
-
-TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv7-a-neon
-TARGET_2ND_CPU_ABI := armeabi-v7a
-TARGET_2ND_CPU_ABI2 := armeabi
-TARGET_2ND_CPU_VARIANT := cortex-a53
-
-TARGET_USES_64_BIT_BINDER := true
+TARGET_ARCH := arm
+TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI2 := armeabi
+TARGET_CPU_VARIANT := cortex-a53
 
 # ANT+
 BOARD_ANT_WIRELESS_DEVICE := "qualcomm-uart"
@@ -121,13 +113,14 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_msm8917
 
 # Kernel
 BOARD_KERNEL_BASE := 0x80000000
-BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 androidboot.bootdevice=7824900.sdhci earlycon=msm_hsl_uart,0x78B0000
-BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom androidboot.memcg=true user_debug=30 msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlycon=msm_hsl_uart,0x78B0000 buildvariant=user 
+BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
+BOARD_KERNEL_IMAGE_NAME := zImage-dtb
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
-TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_CONFIG := riva_defconfig
-TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8917
+TARGET_KERNEL_ARCH := arm
+TARGET_KERNEL_CONFIG := msm8937-perf_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/tiare
 
 # Lights
 TARGET_PROVIDES_LIBLIGHT := true
@@ -136,7 +129,6 @@ TARGET_PROVIDES_LIBLIGHT := true
 BOARD_HARDWARE_CLASS += $(DEVICE_PATH)/lineagehw
 
 # Tap2Wake
-
 TARGET_TAP_TO_WAKE_NODE := "/proc/gesture/onoff"
 
 # Malloc
@@ -146,14 +138,14 @@ MALLOC_SVELTE := true
 TARGET_USES_MEDIA_EXTENSIONS := true
 
 # Partitions
-BOARD_BOOTIMAGE_PARTITION_SIZE     := 67108864
+BOARD_BOOTIMAGE_PARTITION_SIZE     := 50331648
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_CACHEIMAGE_PARTITION_SIZE    := 268435456
+BOARD_CACHEIMAGE_PARTITION_SIZE    := 157286400
 BOARD_FLASH_BLOCK_SIZE := 131072
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 67108864
-BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 3221225472
-BOARD_USERDATAIMAGE_PARTITION_SIZE := 26301931008
-BOARD_VENDORIMAGE_PARTITION_SIZE   := 536870912
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 25165824
+BOARD_SYSTEMIMAGE_PARTITION_SIZE   := 1390411776
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 5622447104
+BOARD_VENDORIMAGE_PARTITION_SIZE   := 333447168
 BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
 TARGET_COPY_OUT_VENDOR := vendor
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -195,4 +187,4 @@ WIFI_DRIVER_FW_PATH_STA := "sta"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit the proprietary files
--include vendor/xiaomi/riva/BoardConfigVendor.mk
+-include vendor/xiaomi/tiare/BoardConfigVendor.mk
